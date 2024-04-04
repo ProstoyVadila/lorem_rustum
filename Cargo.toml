@@ -4,8 +4,8 @@ version = "0.0.1"
 authors = ["Vadim Gorbachev"]
 description = "A small tool for generating lorem-ipsum with a rusty fleur"
 license = "MIT"
-homepage = ""
-repository = ""
+homepage = "https://github.com/ProstoyVadila/lorem_rustum"
+repository = "https://github.com/ProstoyVadila/lorem_rustum"
 readme = "README.md"
 edition = "2021"
 
