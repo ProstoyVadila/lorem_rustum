@@ -1,0 +1,15 @@
+[package]
+name = "lorem-rustum"
+version = "0.0.1"
+authors = ["Vadim Gorbachev"]
+description = "A small tool for generating lorem-ipsum with a rusty fleur"
+license = "MIT"
+homepage = ""
+repository = ""
+readme = "README.md"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.5"
