@@ -11,12 +11,12 @@ pub struct LoremRustum {
 }
 
 impl LoremRustum {
-    pub fn new(words: usize) -> LoremRustum {
+    pub fn new(length: usize) -> LoremRustum {
         let mut rng = rand::thread_rng();
-        let body = LoremRustum::get_body(&mut rng, words);
+        let body = LoremRustum::get_body(&mut rng, length);
         LoremRustum {
             body,
-            length: words
+            length
         }
     }
 
@@ -25,24 +25,18 @@ impl LoremRustum {
         LoremRustum::new(length)
     }
 
-    fn get_body(rng: &mut ThreadRng, words: usize) -> Vec<&'static str> {
-        if words > data::RUSTY_WORDS.len() {
-            return LoremRustum::get_bigger_body(rng, words);
+    fn get_body(rng: &mut ThreadRng, length: usize) -> Vec<&'static str> {
+        if length > data::RUSTY_WORDS.len() {
+            return LoremRustum::get_bigger_body(rng, length);
         }
-        let mut body: Vec<&str> = data::RUSTY_WORDS
-            .into_iter()
-            .enumerate()
-            .filter(|&(i, _)| i < words)
-            .map(|(_, e)| e)
-            .collect();
-
-        body.shuffle(rng);
-        body
+        let mut rusty_words: Vec<&str> = data::RUSTY_WORDS.to_vec();
+        rusty_words.shuffle(rng);
+        rusty_words.drain(0..length).collect()
     }
 
-    fn get_bigger_body(rng: &mut ThreadRng,words: usize) -> Vec<&'static str> {
+    fn get_bigger_body(rng: &mut ThreadRng, length: usize) -> Vec<&'static str> {
         let mut body = vec![];
-        for _ in 0..words {
+        for _ in 0..length {
             body.push(data::RUSTY_WORDS.choose(rng).unwrap().to_owned())
         }
         body
