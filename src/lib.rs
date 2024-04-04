@@ -107,4 +107,32 @@ mod tests {
         };
         assert_ne!(result, lorem_rustum);
     }
+
+    #[test]
+    fn test_get_body() {
+        let length = data::RUSTY_WORDS.len() / 2;
+        let mut rng = rand::thread_rng();
+        let result = LoremRustum::get_body(&mut rng, length);
+        let body: Vec<&str> = data::RUSTY_WORDS
+            .into_iter()
+            .enumerate()
+            .filter(|&(i, _)| i < length)
+            .map(|(_, e)| e)
+            .collect();
+        assert_eq!(result.len(), body.len());
+    }
+
+    #[test]
+    fn test_get_bigger_body() {
+        use rand::prelude::*;
+        let length = data::RUSTY_WORDS.len() * 2;
+        let mut rng = rand::thread_rng();
+
+        let result = LoremRustum::get_bigger_body(&mut rng, length);
+        let mut body = vec![];
+        for _ in 0..length {
+            body.push(data::RUSTY_WORDS.choose(&mut rng).unwrap().to_owned())
+        }
+        assert_eq!(result.len(), body.len())
+    }
 }
