@@ -1,6 +1,6 @@
 [package]
 name = "lorem-rustum"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Vadim Gorbachev"]
 description = "A small tool for generating lorem-ipsum with a rusty fleur"
 license = "MIT"
