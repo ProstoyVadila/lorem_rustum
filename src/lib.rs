@@ -1,18 +1,24 @@
-//! Build `LoremRustum` struct with specified length
-//! by choosing random elements from `RUSTY_PHRASES` using `rand::thread_rng()`.
 //!
-//! # Usage
-//! ```
-//! use lorem_rustum::{LoremRustum, lorem};
+//! A simple lib for generating random lorem-ipsum with a rusty fleur
+//! using [`rand::thread_rng()`](https://docs.rs/rand/latest/rand/).
 //!
-//! let lorem = LoremRustum::new(42);
+//! # Quick Start
+//!```
+//! use lorem_rustum::LoremRustum;
+//!
+//! let length = 42;
+//! let lorem = LoremRustum::new(length);
 //! println!("{}", lorem.to_string());
+//!```
 //!
-//! let mut another_lorem = LoremRustum::default();
-//! let text1 = another_lorem.to_string();
+//! # Other examples
+//! ```
 //!
-//! another_lorem.shuffle();
-//! let text2 = another_lorem.to_string();
+//! let mut lorem = LoremRustum::default();
+//! let text1 = lorem.to_string();
+//!
+//! lorem.shuffle();
+//! let text2 = lorem.to_string();
 //!
 //! assert_ne!(text1, text2);
 //!

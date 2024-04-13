@@ -2,7 +2,7 @@
 name = "lorem-rustum"
 version = "0.0.4"
 authors = ["Vadim Gorbachev"]
-description = "A small tool for generating lorem-ipsum with a rusty fleur"
+description = "A simple lib for generating lorem-ipsum with a rusty fleur"
 license = "MIT"
 homepage = "https://github.com/ProstoyVadila/lorem_rustum"
 repository = "https://github.com/ProstoyVadila/lorem_rustum"

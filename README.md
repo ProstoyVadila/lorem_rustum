@@ -1,6 +1,6 @@
 # Lorem Rustum
 
-A small tool for generating random lorem-ipsum with a rusty fleur
+A simple lib for generating random lorem-ipsum with a rusty fleur
 
 # Quict Start
 
