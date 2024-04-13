@@ -1,3 +1,35 @@
+//! Build `LoremRustum` struct with specified length
+//! by choosing random elements from `RUSTY_PHRASES` using `rand::thread_rng()`.
+//!
+//! # Usage
+//! ```
+//! use lorem_rustum::{LoremRustum, lorem};
+//!
+//! let lorem = LoremRustum::new(42);
+//! println!("{}", lorem.to_string());
+//!
+//! let mut another_lorem = LoremRustum::default();
+//! let text1 = another_lorem.to_string();
+//!
+//! another_lorem.shuffle();
+//! let text2 = another_lorem.to_string();
+//!
+//! assert_ne!(text1, text2);
+//!
+//! let text3 = lorem!(156);
+//! let text4 = lorem!();   // similar to LoremRustum::default().to_string()
+//! ```
+//! # Example Output
+//! ```bash,ignore
+//! checking heap rust-analyzer cargo package manager control
+//! over memory allocation static borrowing wasm the most admired
+//! language fast and reliable impl derive Ferris mascot actix multiple
+//! threads can work on shared data without introducing memory-related
+//! issues to_owned() no garbage collector safety sqlx scope mod rocket
+//! concurrency pub code execution loved by developers rusty stack async
+//! efficient and organized development
+//! ```
+
 use rand::prelude::*;
 
 mod data;
@@ -107,9 +139,40 @@ impl Default for LoremRustum {
     }
 }
 
+/// Generates lorem rustum text with given length
+/// or with default length if no argument was passed.
+///
+/// Examples
+///
+/// ```
+/// use lorem_rustum::{LoremRustum, lorem};
+///
+/// let text: String = lorem!(17);
+///
+/// println!("{}", lorem!(5));
+/// println!("{}", lorem!());
+/// ```
+///
+#[macro_export]
+macro_rules! lorem {
+    ($length:expr) => {{
+        LoremRustum::new($length).to_string()
+    }};
+    () => {{
+        LoremRustum::default().to_string()
+    }};
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn sort_text(text: String) -> String {
+        let mut s: Vec<char> = text.chars().collect();
+        s.sort();
+        let text_sorted: String = s.into_iter().filter(|x| !x.is_whitespace()).collect();
+        text_sorted
+    }
 
     #[test]
     fn test_new() {
@@ -129,7 +192,13 @@ mod tests {
         let lorem_rustum = LoremRustum::new(length);
         let result = LoremRustum::default();
 
+        let full_text = String::from_iter(data::RUSTY_PHRASES);
+        let full_text_sorted = sort_text(full_text);
+        let result_sorted = sort_text(result.to_string());
+
         assert_eq!(result.body.len(), lorem_rustum.body.len());
+        assert_eq!(full_text_sorted.len(), result_sorted.len());
+        assert_eq!(result_sorted, result_sorted);
     }
 
     #[test]
@@ -210,5 +279,28 @@ mod tests {
 
         assert_eq!(text.len(), new_text.len());
         assert_ne!(text, new_text);
+    }
+
+    #[test]
+    fn test_lorem_macro() {
+        let length = 16;
+        let full_text = String::from_iter(data::RUSTY_PHRASES);
+        let text = lorem!(length);
+        let split_words: Vec<&str> = text.split(' ').collect();
+
+        for word in split_words {
+            assert!(full_text.contains(word));
+        }
+    }
+
+    #[test]
+    fn test_lorem_macro_without_args() {
+        let full_text = String::from_iter(data::RUSTY_PHRASES);
+        let full_text_sorted = sort_text(full_text);
+
+        let result = lorem!();
+        let result_sorted = sort_text(result);
+
+        assert_eq!(full_text_sorted, result_sorted);
     }
 }

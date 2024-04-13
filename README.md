@@ -13,27 +13,21 @@ cargo add lorem-rustum
 ## Usage
 
 ```rust
-use lorem_rustum::LoremRustum;
+use lorem_rustum::{LoremRustum, lorem};
 
-fn main() {
-    let length = 25;
-    let lorem = LoremRustum::new(length);
-    let full_lorem = LoremRustum::default();
+let lorem = LoremRustum::new(42);
+println!("{}", lorem.to_string());
 
-    println!("{}", lorem.to_string());
-    println!("{}", full_lorem.to_string());
-}
-```
+let mut another_lorem = LoremRustum::default();
+let text1 = another_lorem.to_string();
 
-```rust
+another_lorem.shuffle();
+let text2 = another_lorem.to_string();
 
-let mut lorem = LoremRustum::default();
-let text = lorem.to_string();
+assert_ne!(text1, text2);
 
-lorem.shuffle();
-let new_text = lorem.to_string();
-
-assert_ne!(text, new_text);
+let text3 = lorem!(156);
+let text4 = lorem!();   // similar to LoremRustum::default().to_string()
 ```
 
 ### Example output
