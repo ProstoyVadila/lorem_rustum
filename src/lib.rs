@@ -86,18 +86,6 @@ impl LoremRustum {
         LoremRustum { body, length }
     }
 
-    /// Build `LoremRustum` with full available `RUSTY_WORDS` (contains 71 element).
-    ///
-    /// # Examples
-    /// ```
-    /// let lorem = lorem_rustum::LoremRustum::default();
-    /// println!("{}", lorem.to_string());
-    /// ```
-    pub fn default() -> LoremRustum {
-        let length = data::RUSTY_PHRASES.len();
-        LoremRustum::new(length)
-    }
-
     fn get_body(rng: &mut ThreadRng, length: usize) -> Vec<&'static str> {
         if length > data::RUSTY_PHRASES.len() {
             return LoremRustum::get_bigger_body(rng, length);
@@ -136,6 +124,20 @@ impl LoremRustum {
 impl ToString for LoremRustum {
     fn to_string(&self) -> String {
         self.body.join(" ")
+    }
+}
+
+impl Default for LoremRustum {
+    /// Build `LoremRustum` with all `RUSTY_PHRASES` (contains 132 phrases).
+    ///
+    /// # Examples
+    /// ```
+    /// let lorem = lorem_rustum::LoremRustum::default();
+    /// println!("{}", lorem.to_string());
+    /// ```
+    fn default() -> Self {
+        let length = data::RUSTY_PHRASES.len();
+        LoremRustum::new(length)
     }
 }
 
