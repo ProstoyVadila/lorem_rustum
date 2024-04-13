@@ -13,6 +13,7 @@
 //!
 //! # Other examples
 //! ```
+//! use lorem_rustum::{LoremRustum,lorem};
 //!
 //! let mut lorem = LoremRustum::default();
 //! let text1 = lorem.to_string();
