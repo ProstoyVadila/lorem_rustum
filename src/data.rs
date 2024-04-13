@@ -1,5 +1,5 @@
 
-pub static RUSTY_WORDS: [&str; 71] = [
+pub static RUSTY_PHRASES: [&str; 132] = [
     "rust", "borrowing", "tokio", "async", "unsafe", "thread", "trait", "&str",
     "rust-analyzer", "scope", "await", "ryan", "ownership", "safety", "nightly", 
     "allocated", "rustlings", "stack", "heap", "no garbage collector", "runtime",
@@ -12,5 +12,15 @@ pub static RUSTY_WORDS: [&str; 71] = [
     "deallocation", "deref", "derive", "impl", "implement trait for", "to_owned()",
     "i'm not looking for a job", "<'static>", "mut", "&mut", "efficient and organized development workflows",
     "concurrency", "multiple threads can work on shared data without introducing memory-related issues",
-    "low-level tools and kernels", "type checking", "unwrap", "please gouge out my eyes"
+    "low-level tools and kernels", "type checking", "unwrap", "please gouge out my eyes",
+    "Sync + Send", "thread safety", "spawn concurrent task", "non-blocking i/o",
+    "smart pointer", "<'a>", "cargo test", "async-std", "println!", "dbg!", "dyn",
+    "stderr", "mpsc", "async move", "Arc", "Rc", "RefCell", "Box", "||", "expect",
+    "map", "making", "building", "produce", "consume", "out of scope", "rustc",
+    "rustup", "panic", "generics", "<T>", "impl fmt::Display for", "macro",
+    "#[derive()]", "multiple bounds", "traits", "macro_rules!", "Some()", "Option<&T>",
+    "None", "RAII", "drop", "destructor", "mutability of data", "ref", "as",
+    "closures", "HOF", "Higher Order Functions", "lazy loading", "err", "error",
+    "Result<T, Error>", "()", "Err(_)", "std", "#[cfg(test)]", "assert!",
+    "cargo run", "publish crate", "code blocks below"
 ];

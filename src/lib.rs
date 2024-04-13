@@ -1,4 +1,37 @@
-
+    /// # Usage
+    /// ```
+    /// let lorem = lorem_rustum::LoremRustum::new(42);
+    /// println!("{}", lorem.to_string());
+    /// ```
+    /// 
+    /// ## Rusty Phrases:
+    /// ```
+    /// pub static RUSTY_PHRASES: [&str; 132] = [
+    ///     "rust", "borrowing", "tokio", "async", "unsafe", "thread", "trait", "&str",
+    ///     "rust-analyzer", "scope", "await", "ryan", "ownership", "safety", "nightly", 
+    ///     "allocated", "rustlings", "stack", "heap", "no garbage collector", "runtime",
+    ///     "macros", "code execution", "fmt", "clippy", "memory safe", "cargo", "built-in",
+    ///     "performance", "golang sucks", "better than c++", "friendly community",
+    ///     "loved by developers", "wasm", "webassembly", "actix", "axum", "rocket", "yew",
+    ///     "diesel", "sqlx", "pub", "mod", "enum", "static", "missing lifetime", "rusty",
+    ///     "the most admired language", "a safer alternative to C and C++", "cargo package manager",
+    ///     "performance-critical services", "Ferris mascot", "fast and reliable", "control over memory allocation",
+    ///     "deallocation", "deref", "derive", "impl", "implement trait for", "to_owned()",
+    ///     "i'm not looking for a job", "<'static>", "mut", "&mut", "efficient and organized development workflows",
+    ///     "concurrency", "multiple threads can work on shared data without introducing memory-related issues",
+    ///     "low-level tools and kernels", "type checking", "unwrap", "please gouge out my eyes",
+    ///     "Sync + Send", "thread safety", "spawn concurrent task", "non-blocking i/o",
+    ///     "smart pointer", "<'a>", "cargo test", "async-std", "println!", "dbg!", "dyn",
+    ///     "stderr", "mpsc", "async move", "Arc", "Rc", "RefCell", "Box", "||", "expect",
+    ///     "map", "making", "building", "produce", "consume", "out of scope", "rustc",
+    ///     "rustup", "panic", "generics", "<T>", "impl fmt::Display for", "macro",
+    ///     "#[derive()]", "multiple bounds", "traits", "macro_rules!", "Some()", "Option<&T>",
+    ///     "None", "RAII", "drop", "destructor", "mutability of data", "ref", "as",
+    ///     "closures", "HOF", "Higher Order Functions", "lazy loading", "err", "error",
+    ///     "Result<T, Error>", "()", "Err(_)", "std", "#[cfg(test)]", "assert!",
+    ///     "cargo run", "publish crate", "code blocks below"
+    /// ];
+    /// ```
 use rand::prelude::*;
 
 mod data;
@@ -12,18 +45,17 @@ pub struct LoremRustum {
 
 impl LoremRustum {
     /// Build `LoremRustum` struct with specified length
-    /// by choosing random elements from `RUSTY_WORDS` using `rand::thread_rng()`.
+    /// by choosing random elements from `RUSTY_PHRASES` using `rand::thread_rng()`.
+    /// 
     /// # Examples
     /// ```
-    /// use lorem_rustum::LoremRustum;
-    /// 
-    /// let lorem = LoremRustum::new(42);
+    /// let lorem = lorem_rustum::LoremRustum::new(42);
     /// println!("{}", lorem.to_string());
     /// ```
     /// 
-    /// ### RUSTY WORDS
+    /// ### Rusty Phrases:
     /// ```
-    /// pub static RUSTY_WORDS: [&str; 71] = [
+    /// pub static RUSTY_PHRASES: [&str; 132] = [
     ///     "rust", "borrowing", "tokio", "async", "unsafe", "thread", "trait", "&str",
     ///     "rust-analyzer", "scope", "await", "ryan", "ownership", "safety", "nightly", 
     ///     "allocated", "rustlings", "stack", "heap", "no garbage collector", "runtime",
@@ -36,7 +68,17 @@ impl LoremRustum {
     ///     "deallocation", "deref", "derive", "impl", "implement trait for", "to_owned()",
     ///     "i'm not looking for a job", "<'static>", "mut", "&mut", "efficient and organized development workflows",
     ///     "concurrency", "multiple threads can work on shared data without introducing memory-related issues",
-    ///     "low-level tools and kernels", "type checking", "unwrap", "please gouge out my eyes"
+    ///     "low-level tools and kernels", "type checking", "unwrap", "please gouge out my eyes",
+    ///     "Sync + Send", "thread safety", "spawn concurrent task", "non-blocking i/o",
+    ///     "smart pointer", "<'a>", "cargo test", "async-std", "println!", "dbg!", "dyn",
+    ///     "stderr", "mpsc", "async move", "Arc", "Rc", "RefCell", "Box", "||", "expect",
+    ///     "map", "making", "building", "produce", "consume", "out of scope", "rustc",
+    ///     "rustup", "panic", "generics", "<T>", "impl fmt::Display for", "macro",
+    ///     "#[derive()]", "multiple bounds", "traits", "macro_rules!", "Some()", "Option<&T>",
+    ///     "None", "RAII", "drop", "destructor", "mutability of data", "ref", "as",
+    ///     "closures", "HOF", "Higher Order Functions", "lazy loading", "err", "error",
+    ///     "Result<T, Error>", "()", "Err(_)", "std", "#[cfg(test)]", "assert!",
+    ///     "cargo run", "publish crate", "code blocks below"
     /// ];
     /// ```
     pub fn new(length: usize) -> LoremRustum {
@@ -52,21 +94,19 @@ impl LoremRustum {
     /// 
     /// # Examples
     /// ```
-    /// use lorem_rustum::LoremRustum;
-    /// 
-    /// let lorem = LoremRustum::default();
+    /// let lorem = lorem_rustum::LoremRustum::default();
     /// println!("{}", lorem.to_string());
     /// ```
     pub fn default() -> LoremRustum {
-        let length = data::RUSTY_WORDS.len();
+        let length = data::RUSTY_PHRASES.len();
         LoremRustum::new(length)
     }
 
     fn get_body(rng: &mut ThreadRng, length: usize) -> Vec<&'static str> {
-        if length > data::RUSTY_WORDS.len() {
+        if length > data::RUSTY_PHRASES.len() {
             return LoremRustum::get_bigger_body(rng, length);
         }
-        let mut rusty_words: Vec<&str> = data::RUSTY_WORDS.to_vec();
+        let mut rusty_words: Vec<&str> = data::RUSTY_PHRASES.to_vec();
         rusty_words.shuffle(rng);
         rusty_words.drain(0..length).collect()
     }
@@ -74,7 +114,7 @@ impl LoremRustum {
     fn get_bigger_body(rng: &mut ThreadRng, length: usize) -> Vec<&'static str> {
         let mut body = vec![];
         for _ in 0..length {
-            body.push(data::RUSTY_WORDS.choose(rng).unwrap().to_owned())
+            body.push(data::RUSTY_PHRASES.choose(rng).unwrap().to_owned())
         }
         body
     }
@@ -83,9 +123,7 @@ impl LoremRustum {
     /// 
     /// # Examples
     /// ```
-    /// use lorem_rustum::LoremRustum;
-    /// 
-    /// let mut lorem = LoremRustum::default();
+    /// let mut lorem = lorem_rustum::LoremRustum::default();
     /// let text = lorem.to_string();
     /// 
     /// lorem.shuffle();
@@ -112,8 +150,8 @@ mod tests {
 
     #[test]
     fn test_new() {
-        let length = data::RUSTY_WORDS.len();
-        let full_text = String::from_iter(data::RUSTY_WORDS);
+        let length = data::RUSTY_PHRASES.len();
+        let full_text = String::from_iter(data::RUSTY_PHRASES);
         let result = LoremRustum::new(length);
 
         assert!(result.body.len() == length);
@@ -124,7 +162,7 @@ mod tests {
 
     #[test]
     fn test_default() {
-        let length = data::RUSTY_WORDS.len();
+        let length = data::RUSTY_PHRASES.len();
         let lorem_rustum = LoremRustum::new(length);
         let result = LoremRustum::default();
 
@@ -133,7 +171,7 @@ mod tests {
 
     #[test]
     fn test_length() {
-        let rusty_words_len = data::RUSTY_WORDS.len();
+        let rusty_words_len = data::RUSTY_PHRASES.len();
         let length = rusty_words_len / 2;
         let result = LoremRustum::new(length);
 
@@ -157,7 +195,7 @@ mod tests {
     fn test_random() {
         let length = 25;
         let result = LoremRustum::new(length);
-        let body: Vec<&str> = data::RUSTY_WORDS
+        let body: Vec<&str> = data::RUSTY_PHRASES
             .into_iter()
             .enumerate()
             .filter(|&(i, _)| i < length)
@@ -173,10 +211,10 @@ mod tests {
 
     #[test]
     fn test_get_body() {
-        let length = data::RUSTY_WORDS.len() / 2;
+        let length = data::RUSTY_PHRASES.len() / 2;
         let mut rng = rand::thread_rng();
         let result = LoremRustum::get_body(&mut rng, length);
-        let body: Vec<&str> = data::RUSTY_WORDS
+        let body: Vec<&str> = data::RUSTY_PHRASES
             .into_iter()
             .enumerate()
             .filter(|&(i, _)| i < length)
@@ -190,13 +228,13 @@ mod tests {
     #[test]
     fn test_get_bigger_body() {
         use rand::prelude::*;
-        let length = data::RUSTY_WORDS.len() * 2;
+        let length = data::RUSTY_PHRASES.len() * 2;
         let mut rng = rand::thread_rng();
 
         let result = LoremRustum::get_bigger_body(&mut rng, length);
         let mut body = vec![];
         for _ in 0..length {
-            body.push(data::RUSTY_WORDS.choose(&mut rng).unwrap().to_owned())
+            body.push(data::RUSTY_PHRASES.choose(&mut rng).unwrap().to_owned())
         }
 
         assert!(result.len() == length);
