@@ -2,27 +2,31 @@
 
 A simple lib for generating random lorem-ipsum with a rusty fleur
 
-# Quict Start
-
 ## Installation
 
 ```bash
 cargo add lorem-rustum
 ```
 
-## Usage
+## Quict Start
+
+```rust
+use lorem_rustum::LoremRustum;
+
+let lorem = LoremRustum::new(42);
+println!("{}", lorem.to_string());
+```
+
+## Other examples
 
 ```rust
 use lorem_rustum::{LoremRustum, lorem};
 
-let lorem = LoremRustum::new(42);
-println!("{}", lorem.to_string());
+let mut lorem = LoremRustum::default();
+let text1 = lorem.to_string();
 
-let mut another_lorem = LoremRustum::default();
-let text1 = another_lorem.to_string();
-
-another_lorem.shuffle();
-let text2 = another_lorem.to_string();
+lorem.shuffle();
+let text2 = lorem.to_string();
 
 assert_ne!(text1, text2);
 
