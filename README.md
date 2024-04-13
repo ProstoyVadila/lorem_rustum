@@ -17,10 +17,21 @@ use lorem_rustum::LoremRustum;
 
 fn main() {
     let length = 25
-    let text = LoremRustum::new(length);
-    let full_text = LoremRustum::default();
+    let lorem = LoremRustum::new(length);
+    let full_lorem = LoremRustum::default();
 
-    println!("{}", text.to_string());
-    println!("{}", full_text.to_string());
+    println!("{}", lorem.to_string());
+    println!("{}", full_lorem.to_string());
 }
+```
+
+```rust
+
+let mut lorem = LoremRustum::default();
+let text = lorem.to_string();
+
+lorem.shuffle();
+let new_text = lorem.to_string();
+
+assert_ne!(text, new_text);
 ```
