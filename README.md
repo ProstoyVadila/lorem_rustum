@@ -16,7 +16,7 @@ cargo add lorem-rustum
 use lorem_rustum::LoremRustum;
 
 fn main() {
-    let length = 25
+    let length = 25;
     let lorem = LoremRustum::new(length);
     let full_lorem = LoremRustum::default();
 
@@ -34,4 +34,11 @@ lorem.shuffle();
 let new_text = lorem.to_string();
 
 assert_ne!(text, new_text);
+```
+
+### Example output
+
+```
+checking heap rust-analyzer cargo package manager control over memory allocation static borrowing wasm the most admired language fast and reliable impl derive Ferris mascot actix multiple threads can work on shared data without introducing memory-related issues to_owned() no garbage collector safety sqlx scope mod rocket concurrency pub code execution loved by developers rusty stack async efficient and organized development
+
 ```
